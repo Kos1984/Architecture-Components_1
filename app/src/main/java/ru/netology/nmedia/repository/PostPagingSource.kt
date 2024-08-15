@@ -27,9 +27,9 @@ class PostPagingSource(
                     data = emptyList(), nextKey = null, prevKey = params.key,
                 )
             }
-           /* if (!result.isSuccessful) {
+           if (!result.isSuccessful) {
                 throw HttpException(result)
-            }*/
+            }
             val data = result.body().orEmpty()
             return LoadResult.Page(data, prevKey = params.key, data.lastOrNull()?.id)
         }catch (e: IOException){

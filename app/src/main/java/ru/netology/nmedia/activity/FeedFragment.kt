@@ -75,12 +75,6 @@ class FeedFragment : Fragment() {
             }
         }
 
-        /* сломался из за PAGING3
-        viewModel.newerCount.observe(viewLifecycleOwner) { state ->
-            // TODO: just log it, interaction must be in homework
-            println(state)
-        }*/
-
         lifecycleScope.launchWhenCreated{
             adapter.loadStateFlow.collectLatest {
                 binding.swiperefresh.isRefreshing = it.refresh is LoadState.Loading
