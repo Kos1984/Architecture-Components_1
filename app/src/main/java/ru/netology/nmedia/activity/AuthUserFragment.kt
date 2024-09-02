@@ -38,6 +38,11 @@ class AuthUserFragment : Fragment() {
                     .show()
             }else if (it.authIsSuccess){
                 findNavController().navigateUp()
+                // метод удаляет фрагмент что позволяет избежать ошибки навигации про повторном переходе после успешной авторизации
+                activity?.run {
+                    supportFragmentManager.beginTransaction().remove(this@AuthUserFragment)
+                        .commitAllowingStateLoss()
+                }
             }
         }
 
