@@ -84,6 +84,7 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                         val navController = findNavController(R.id.nav_host_fragment)
                         lateinit var listener: NavController.OnDestinationChangedListener
                         listener = NavController.OnDestinationChangedListener { _, destination, _ ->
+                            println(destination.id)
                             when (destination.id) {
                                 R.id.feedFragment -> navController.navigate(R.id.action_feedFragment_to_authUserFragment)
                                 R.id.newPostFragment -> navController.navigate(R.id.action_newPostFragment_to_authUserFragment)

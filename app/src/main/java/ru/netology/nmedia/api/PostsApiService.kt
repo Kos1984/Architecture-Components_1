@@ -10,11 +10,21 @@ import ru.netology.nmedia.dto.Post
 
 
 interface PostsApiService {
+
     @GET("posts")
     suspend fun getAll(): Response<List<Post>>
+    //метод возьмет последнюю страницу с сервера
+    @GET("posts/latest")
+    suspend fun getlatest(@Query("count") count : Int): Response<List<Post>>
 
     @GET("posts/{id}/newer")
     suspend fun getNewer(@Path("id") id: Long): Response<List<Post>>
+    //вернет посты которые были до публикации переданного id
+    @GET("posts/{id}/before")
+    suspend fun getBefore(@Path("id") id: Long, @Query("count") count : Int): Response<List<Post>>
+    //вернет посты которые были после публикации переданного id
+    @GET("posts/{id}/after")
+    suspend fun getAfter(@Path("id") id: Long, @Query("count") count : Int): Response<List<Post>>
 
     @GET("posts/{id}")
     suspend fun getById(@Path("id") id: Long): Response<Post>
